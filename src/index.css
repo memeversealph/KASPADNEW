@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 27 29 41;
+    --card-bg: 35 31 32;
+    --text-primary: 255 255 255;
+    --text-secondary: 182 182 182;
+    --border-color: 112 199 186;
+  }
+
+  .dark {
+    --background: 10 11 15;
+    --card-bg: 21 24 33;
+    --text-primary: 255 255 255;
+    --text-secondary: 156 163 175;
+    --border-color: 73 234 203;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans antialiased transition-colors duration-200;
+    background-image: 
+      radial-gradient(circle at 100% 0%, rgba(112, 199, 186, 0.05) 0%, transparent 25%),
+      radial-gradient(circle at 0% 100%, rgba(73, 234, 203, 0.05) 0%, transparent 25%);
+    background-attachment: fixed;
+  }
+
+  button, a {
+    @apply cursor-pointer select-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input, select {
+    @apply appearance-none;
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark text-white font-medium
+    px-6 py-2.5 rounded-md transition-all duration-200
+    hover:shadow-primary-lg hover:scale-[1.02] hover:brightness-110
+    focus:ring-2 focus:ring-primary/20 focus:outline-none
+    active:scale-[0.98] select-none
+    backdrop-blur-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-card-bg/80 text-primary border border-primary/20
+    px-6 py-2.5 rounded-md transition-all duration-200
+    hover:bg-primary/5 hover:border-primary/30 hover:scale-[1.02]
+    focus:ring-2 focus:ring-primary/20 focus:outline-none
+    active:scale-[0.98] select-none
+    backdrop-blur-sm;
+  }
+
+  .card {
+    @apply bg-card-bg/90 backdrop-blur border border-border-color/20 rounded-xl p-4 sm:p-6
+    shadow-lg shadow-black/5 transition-all duration-200
+    hover:border-border-color/30 hover:shadow-xl
+    bg-gradient-to-br from-card-bg/95 to-background/95;
+  }
+
+  .input-primary {
+    @apply bg-background/50 border border-border-color/20 rounded-md px-4 py-2.5
+    focus:ring-2 focus:ring-primary/20 focus:border-primary/30 focus:outline-none
+    placeholder:text-text-secondary text-text-primary transition-all duration-200
+    disabled:opacity-50 disabled:cursor-not-allowed
+    backdrop-blur-sm;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent
+    drop-shadow-sm;
+  }
+
+  .tier-card {
+    @apply card hover:scale-[1.02] hover:shadow-primary-lg hover:border-primary/20 
+    transition-all duration-300;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-gradient-to-br from-white/5 to-transparent
+    border border-white/10 shadow-lg;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-lg hover:shadow-primary/20 transition-shadow duration-300;
+  }
+
+  .progress-bar {
+    @apply relative w-full h-3 bg-background/50 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply absolute top-0 left-0 h-full rounded-full 
+    bg-gradient-to-r from-primary to-primary-dark 
+    animate-pulse-slow;
+  }
+
+  .progress-bar-shine {
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent
+    -translate-x-full animate-shimmer;
+  }
+}
+
+.kaspa-gradient {
+  @apply bg-gradient-to-r from-primary to-primary-dark;
+}
+
+/* Animated gradient background */
+.gradient-animate {
+  background: linear-gradient(
+    -45deg,
+    rgba(112, 199, 186, 0.1),
+    rgba(73, 234, 203, 0.1),
+    rgba(112, 199, 186, 0.05),
+    rgba(73, 234, 203, 0.05)
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  .card {
+    @apply rounded-lg;
+  }
+
+  input[type="number"] {
+    @apply text-base;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
